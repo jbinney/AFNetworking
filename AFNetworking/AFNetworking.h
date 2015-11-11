@@ -36,7 +36,7 @@
 
     #import "AFImageRequestOperation.h"
 
-    #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+    #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && !defined(AF_APP_EXTENSIONS)
         #import "AFNetworkActivityIndicatorManager.h"
         #import "UIImageView+AFNetworking.h"
     #endif
