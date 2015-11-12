@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.osx.frameworks = 'CoreServices', 'SystemConfiguration', 'Security'
 
   s.watchos.deployment_target = '2.0'
-  s.watchos.frameworks = 'MobileCoreServices', 'SystemConfiguration', 'Security'
+  s.watchos.frameworks = 'MobileCoreServices', 'Security'
 
   s.prefix_header_contents = <<-EOS
 #import <Availability.h>
