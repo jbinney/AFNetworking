@@ -21,8 +21,7 @@ Pod::Spec.new do |s|
   s.prefix_header_contents = <<-EOS
 #import <Availability.h>
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
-  #import <SystemConfiguration/SystemConfiguration.h>
+#if __WATCH_OS_VERSION_MIN_REQUIRED
   #import <MobileCoreServices/MobileCoreServices.h>
   #import <Security/Security.h>
 #else
