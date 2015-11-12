@@ -219,8 +219,11 @@ static UIImage * AFInflatedImageFromResponseWithDataAtScale(NSHTTPURLResponse *r
     if (!self) {
         return nil;
     }
-
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+    
+#if defined(__WATCH_OS_VERSION_MIN_REQUIRED)
+    self.imageScale = [WKInterfaceDevice currentDevice].screenScale;
+    self.automaticallyInflatesResponseImage = YES;
+#elif defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
     self.imageScale = [[UIScreen mainScreen] scale];
     self.automaticallyInflatesResponseImage = YES;
 #endif
