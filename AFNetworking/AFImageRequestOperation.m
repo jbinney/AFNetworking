@@ -33,6 +33,9 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 }
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#import <WatchKit/WatchKit.h>
+#endif
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 #import <CoreGraphics/CoreGraphics.h>
 
 static UIImage * AFImageWithDataAtScale(NSData *data, CGFloat scale) {
