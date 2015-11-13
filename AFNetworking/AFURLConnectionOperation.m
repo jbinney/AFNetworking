@@ -516,6 +516,21 @@ static BOOL AFSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
 - (void)operationDidStart {
     [self.lock lock];
     if (![self isCancelled]) {
+#if defined(__WATCH_OS_VERSION_MIN_REQUIRED)
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDataTask *dataTask =
+        [session
+         dataTaskWithRequest:self.request
+         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+         {
+             self.response = response;
+             self.responseData = data;
+             [self.outputStream close];
+             [self finish];
+             self.connection = nil;
+         }];
+        [dataTask resume];
+#else
         self.connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
         
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
@@ -523,8 +538,8 @@ static BOOL AFSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
             [self.connection scheduleInRunLoop:runLoop forMode:runLoopMode];
             [self.outputStream scheduleInRunLoop:runLoop forMode:runLoopMode];
         }
-        
         [self.connection start];
+#endif
     }
     [self.lock unlock];
     
