@@ -523,6 +523,9 @@ static BOOL AFSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
          dataTaskWithRequest:self.request
          completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
          {
+             if (error) {
+                 self.error = error;
+             }
              self.response = response;
              self.responseData = data;
              [self.outputStream close];
