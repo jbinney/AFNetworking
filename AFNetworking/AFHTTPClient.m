@@ -35,7 +35,7 @@
 #import <netdb.h>
 #endif
 
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if defined(__WATCH_OS_VERSION_MIN_REQUIRED)
 #import <WatchKit/WatchKit.h>
 #elif defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 #import <UIKit/UIKit.h>
